@@ -12,4 +12,9 @@ class Api::PracticesController < ApplicationController
     @practice.save
   end
 
+  def show
+    @practice = Practice.find(params[:id])
+    render "show.json.jbuilder"
+  end
+
 end

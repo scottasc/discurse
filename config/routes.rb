@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     post '/practices' => 'practices#create'
 
     get '/practices' => 'practices#index'
+    get '/practices/:id' => 'practices#show'
   end
 end

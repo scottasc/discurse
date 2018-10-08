@@ -1,1 +1,1 @@
-json.practices @practices
+json.array! @practices, partial: "practice", as: :practice

@@ -1,0 +1,1 @@
+json.partial! @practice, partial: "practice", as: :practice
