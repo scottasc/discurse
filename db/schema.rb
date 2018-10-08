@@ -10,20 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_04_015144) do
+ActiveRecord::Schema.define(version: 2018_10_08_203821) do
 
   create_table "practices", force: :cascade do |t|
-    t.integer "count"
-    t.integer "sentiment"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "thoughts", force: :cascade do |t|
-    t.text "content"
-    t.integer "sentiment"
+    t.decimal "sentiment", precision: 4, scale: 2
     t.integer "practice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "content"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
