@@ -42,25 +42,33 @@ thought = gets.chomp
 
 thought_parsed = thought.downcase.gsub(/[^a-z0-9\s]/i, '').split
 words_in_thought = thought_parsed.count
-score = 0
+valence = 0
+arousal = 0
+dominance = 0
+count = 0
 
 thought_parsed.each do |word|
   word_list["words"].each do |hash|
     if word == hash["content"]
-      score += hash["sentiment"]
+      valence += hash["valence"].to_i
+      arousal += hash["arousal"].to_i
+      dominance += hash["dominance"].to_i
+      count += 1
     end
   end
 end
 
-thought_sentiment = ((score.to_f/words_in_thought.to_f)*100).round(2)
-puts "Thought sentiment: #{thought_sentiment}"
+# thought_sentiment = ((score.to_f/words_in_thought.to_f)*100).round(2)
+puts "Valence: #{valence/count.to_f}, arousal: #{arousal/count.to_f}, dominance: #{dominance/count.to_f}"
 
 
-# Defininf the params and sending them to the API to create the thought:
+# Defining the params and sending them to the API to create the thought:
 
 params = {
           content: thought,
-          sentiment: thought_sentiment,
+          valence: valence,
+          arousal: arousal,
+          dominance: dominance,
           practice_id: current_practice
           }
 
@@ -72,14 +80,37 @@ HTTP.post(
 # Getting the average thought sentiment for a practice:
 
 practice_thoughts = HTTP.get("http://localhost:3000/api/practices/#{current_practice}").parse["thoughts"]
-practice_sentiment = ((practice_thoughts.map { |thought| thought["sentiment"].to_f }.sum)/practice_thoughts.count).round(2)
+
+practice_valence = ((practice_thoughts.map { |thought| thought["valence"].to_f }.sum)/practice_thoughts.count).round(2)
+practice_arousal = ((practice_thoughts.map { |thought| thought["arousal"].to_f }.sum)/practice_thoughts.count).round(2)
+practice_dominance = ((practice_thoughts.map { |thought| thought["dominance"].to_f }.sum)/practice_thoughts.count).round(2)
 
 puts "Total thoughts this practice: #{practice_thoughts.count}"
-puts "This practice's overall sentiment is #{practice_sentiment}."
+puts "Valence this session: #{practice_valence}"
+puts "Arousal this session: #{practice_arousal}"
+puts "dominance this session: #{practice_dominance}"
+
+# puts "This practice's overall sentiment is #{practice_sentiment}."
 
 # assigning the practice_sentiment to the practice and deleting the dependent thoughts
 
-puts "Would you like to end this session? Your thoughts will be deleted. Your sentiment will live on."
+puts "Would you like to end this session?" # Your thoughts will be deleted. Your sentiment will live on.
+
+# ENDING THE PRACTICE IS JUST SAVING STUFF AND PREVENTING A USER FROM CONTINUING, AND PRESENTING THEM ONLY WITH
+# THE OPTION TO START A NEW PRACTICE.
+
+
+
+
+# answer = gets.chomp.downcase
+
+# if answer == "yes"
+
+  #send a patch request to the Practices model to save the sentiments
+  #delete all dependent thoughts
+  #
+
+
 
  #MODEL METHOD ^ ^ ^ ^
 
