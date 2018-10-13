@@ -1,10 +1,8 @@
 require 'http'
-word_list = HTTP.get("http://localhost:3000/api/words").parse
 
 ######-------############-------############-------######
 # CREATING A PRACTICE
 ######-------############-------############-------######
-
 
 puts "Would you like to begin a new practice? Type yes or no."
 answer = gets.chomp.downcase
@@ -38,39 +36,7 @@ puts "Current practice ID: #{current_practice}"
 puts "Enter a thought:"
 thought = gets.chomp
 
-# Sentamentalizer:
-
-thought_parsed = thought.downcase.gsub(/[^a-z0-9\s]/i, '').split
-words_in_thought = thought_parsed.count
-valence = 0
-arousal = 0
-dominance = 0
-count = 0
-
-thought_parsed.each do |word|
-  word_list["words"].each do |hash|
-    if word == hash["content"]
-      valence += hash["valence"].to_i
-      arousal += hash["arousal"].to_i
-      dominance += hash["dominance"].to_i
-      count += 1
-    end
-  end
-end
-
-# thought_sentiment = ((score.to_f/words_in_thought.to_f)*100).round(2)
-puts "Valence: #{valence/count.to_f}, arousal: #{arousal/count.to_f}, dominance: #{dominance/count.to_f}"
-
-
-# Defining the params and sending them to the API to create the thought:
-
-params = {
-          content: thought,
-          valence: valence,
-          arousal: arousal,
-          dominance: dominance,
-          practice_id: current_practice
-          }
+params = {content: thought}
 
 HTTP.post(
           "http://localhost:3000/api/thoughts",

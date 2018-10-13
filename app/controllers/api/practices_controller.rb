@@ -17,4 +17,10 @@ class Api::PracticesController < ApplicationController
     render "show.json.jbuilder"
   end
 
+  def update
+    @practice = Practice.last
+    @practice.end_practice
+    render 'show.json.jbuilder'
+  end
+
 end

@@ -2,6 +2,21 @@ class Practice < ApplicationRecord
   belongs_to :user
   has_many :thoughts
 
-  # calculator method that collects all the dependent thought's data, stores it, then deletes the dependent thoughts. This would require sentiment to be an attribute on the practice model.
+  def end_practice
+    number_of_thoughts = self.thoughts.count
+    practice_valence = 0
+    practice_arousal = 0
+    practice_dominance = 0
 
+    self.thoughts.each do |thought|
+      practice_valence += thought.valence
+      practice_arousal += thought.arousal
+      practice_dominance += thought.dominance
+    end
+
+    self.valence = practice_valence/number_of_thoughts
+    self.arousal = practice_arousal/number_of_thoughts
+    self.dominance = practice_dominance/number_of_thoughts
+    self.thoughts.delete_all
+  end
 end

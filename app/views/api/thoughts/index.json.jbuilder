@@ -1,0 +1,1 @@
+json.thought @thoughts
