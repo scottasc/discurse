@@ -17,6 +17,8 @@ class Practice < ApplicationRecord
     self.valence = practice_valence/number_of_thoughts
     self.arousal = practice_arousal/number_of_thoughts
     self.dominance = practice_dominance/number_of_thoughts
+    self.thought_count = number_of_thoughts
     self.thoughts.delete_all
   end
+
 end

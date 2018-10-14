@@ -1,1 +1,1 @@
-json.thought @thoughts
+json.array! @thoughts, partial: 'thought', as: :thought
