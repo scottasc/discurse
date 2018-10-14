@@ -1,5 +1,5 @@
 class Thought < ApplicationRecord
-  belongs_to :practice, optional: true
+  belongs_to :practice
 
   def split_words
     self.content.downcase.gsub(/[^a-z0-9\s]/i, '').split

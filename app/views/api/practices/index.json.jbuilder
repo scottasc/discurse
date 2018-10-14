@@ -1,1 +1,4 @@
 json.practices @practices
+json.total_practices @total_practices
+json.total_thoughts @total_thoughts
+json.average_thoughts_per_session @average_thoughts_per_session

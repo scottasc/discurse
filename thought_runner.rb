@@ -32,15 +32,15 @@ end
 # puts "Current practice ID: #{current_practice}"
 
 
-# puts "Enter a thought:"
-# thought = gets.chomp
+puts "Enter a thought:"
+thought = gets.chomp
 
-# params = {content: thought}
+params = {content: thought}
 
-# HTTP.post(
-#           "http://localhost:3000/api/thoughts",
-#           form: params
-#           )
+HTTP.post(
+          "http://localhost:3000/api/thoughts",
+          form: params
+          )
 
 # thought_response = HTTP.get("http://localhost:3000/api/thoughts").parse
 # last_thought = thought_response.last["formatted"]

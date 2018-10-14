@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capstonin'</title>
+  <meta name="referrer" content="strict-same-origin">
+</head>
+<body>
+
+<h1>Dashboard</h1>
+
+    <form action="http://localhost:3000/api/practices" method="get">
+        User ID:
+        <input type="text" name="user_id"> <input type="submit" value="Submit">
+    </form>
+
+<h1>Log in</h1>
+  
+    <form action="http://localhost:3000/api/sessions" method="post">
+        Email:
+        <input type="text" name="email">
+        Password:
+        <input type="text" name="password">
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>

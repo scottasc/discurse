@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     get '/practices/:id' => 'practices#show'
     get '/users/:id' => 'users#show'
 
-    patch '/practices' => 'practices#update'
+    patch '/practices/:id' => 'practices#update'
   end
 end
