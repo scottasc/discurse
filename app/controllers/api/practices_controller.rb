@@ -24,8 +24,9 @@ class Api::PracticesController < ApplicationController
 
   def update
     @practice = Practice.find(params[:id])
-    @practice.end_practice
+    @practice.consolidate_thoughts
     @practice.save
+    Thought.all.delete_all # this can probably go in a model method in Practice for maximum RESTitude.
     render "show.json.jbuilder"
   end
 

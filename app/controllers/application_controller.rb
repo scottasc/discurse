@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
+  require 'ibm_watson/natural_language_understanding_v1'
 
   def current_user
     auth_headers = request.headers['Authorization']

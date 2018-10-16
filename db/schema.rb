@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_13_221703) do
+ActiveRecord::Schema.define(version: 2018_10_16_210125) do
 
   create_table "practices", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "valence", precision: 4, scale: 2
-    t.decimal "arousal", precision: 4, scale: 2
-    t.decimal "dominance", precision: 4, scale: 2
     t.integer "thought_count"
+    t.decimal "sadness", precision: 4, scale: 3
+    t.decimal "joy", precision: 4, scale: 3
+    t.decimal "fear", precision: 4, scale: 3
+    t.decimal "disgust", precision: 4, scale: 3
+    t.decimal "anger", precision: 4, scale: 3
   end
 
   create_table "thoughts", force: :cascade do |t|
@@ -27,9 +29,11 @@ ActiveRecord::Schema.define(version: 2018_10_13_221703) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
-    t.decimal "valence", precision: 4, scale: 2
-    t.decimal "arousal", precision: 4, scale: 2
-    t.decimal "dominance", precision: 4, scale: 2
+    t.decimal "sadness", precision: 4, scale: 3
+    t.decimal "joy", precision: 4, scale: 3
+    t.decimal "fear", precision: 4, scale: 3
+    t.decimal "disgust", precision: 4, scale: 3
+    t.decimal "anger", precision: 4, scale: 3
   end
 
   create_table "users", force: :cascade do |t|

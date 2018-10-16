@@ -1,27 +1,27 @@
 class Thought < ApplicationRecord
   belongs_to :practice
 
-  def split_words
-    self.content.downcase.gsub(/[^a-z0-9\s]/i, '').split
-  end
-
   def emotionalize
-    count = self.split_words.count
-    vv = 0
-    aa = 0
-    dd = 0
+    content = self.content
+    natural_language_understanding = IBMWatson::NaturalLanguageUnderstandingV1.new(
+                                                                                    username: "9fa03f8f-2344-4214-abd5-0979299ff47e",
+                                                                                    password: "OqJkfuONanYj",
+                                                                                    version: "2018-03-16"
+                                                                                   )
 
-    self.split_words.each do |element|
-      current = Word.find_by(content: element)
-      if current
-        vv += current.valence
-        aa += current.arousal
-        dd += current.dominance
-      end
-    end
-    self.valence = vv/count
-    self.arousal = aa/count
-    self.dominance = dd/count
+    response = natural_language_understanding.analyze(
+                                                      text: "#{content}",
+                                                      features: {
+                                                                "emotion" => {}
+                                                                }
+                                                      ).result
+
+
+    self.sadness = response["emotion"]["document"]["emotion"]["sadness"]
+    self.joy = response["emotion"]["document"]["emotion"]["joy"]
+    self.fear = response["emotion"]["document"]["emotion"]["fear"]
+    self.disgust = response["emotion"]["document"]["emotion"]["disgust"]
+    self.anger = response["emotion"]["document"]["emotion"]["anger"]
   end
 
 end

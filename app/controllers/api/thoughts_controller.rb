@@ -10,8 +10,6 @@ class Api::ThoughtsController < ApplicationController
                           content: params[:content],
                           practice_id: params[:practice_id]
                           )
-
-    @thought.split_words
     @thought.emotionalize
     @thought.save
     render 'show.json.jbuilder'
