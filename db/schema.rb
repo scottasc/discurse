@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_210125) do
+ActiveRecord::Schema.define(version: 2018_10_20_201618) do
 
   create_table "practices", force: :cascade do |t|
     t.integer "user_id"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 2018_10_16_210125) do
     t.decimal "fear", precision: 4, scale: 3
     t.decimal "disgust", precision: 4, scale: 3
     t.decimal "anger", precision: 4, scale: 3
+    t.integer "red"
+    t.integer "green"
+    t.integer "blue"
   end
 
   create_table "users", force: :cascade do |t|

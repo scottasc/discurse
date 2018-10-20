@@ -1,4 +1,3 @@
-json.formatted do
   json.practice thought.practice_id
   json.thought_id thought.id
   json.content thought.content
@@ -7,4 +6,6 @@ json.formatted do
   json.fear thought.fear
   json.disgust thought.disgust
   json.anger thought.anger
-end
+  json.red @thought.red
+  json.green @thought.green
+  json.blue @thought.blue

@@ -24,4 +24,10 @@ class Thought < ApplicationRecord
     self.anger = response["emotion"]["document"]["emotion"]["anger"]
   end
 
+  def colorize
+    self.red = 255 * self.sadness
+    self.green = 255 * self.fear
+    self.blue = 255 * self.anger
+  end
+
 end

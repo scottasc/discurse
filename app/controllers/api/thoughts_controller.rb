@@ -11,6 +11,7 @@ class Api::ThoughtsController < ApplicationController
                           practice_id: params[:practice_id]
                           )
     @thought.emotionalize
+    @thought.colorize
     @thought.save
     render 'show.json.jbuilder'
   end
