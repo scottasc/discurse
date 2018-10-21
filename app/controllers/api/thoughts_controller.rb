@@ -8,7 +8,7 @@ class Api::ThoughtsController < ApplicationController
   def create
     @thought = Thought.new(
                           content: params[:content],
-                          practice_id: params[:practice_id]
+                          practice_id: current_user.practices.last.id
                           )
     @thought.emotionalize
     @thought.colorize

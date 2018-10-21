@@ -1,13 +1,7 @@
 class Api::PracticesController < ApplicationController
 
   def index
-    @practices = Practice.where(user_id: params[:user_id])
-    @total_practices = @practices.count
-    @total_thoughts = 0
-    @practices.each do |p|
-      @total_thoughts += p.thought_count
-    end
-    @average_thoughts_per_session = (@total_thoughts.to_f/@total_practices.to_f).round(2)
+    @practices = Practice.where(user_id: current_user.id)
     render 'index.json.jbuilder'
   end
 
@@ -26,7 +20,6 @@ class Api::PracticesController < ApplicationController
     @practice = Practice.find(params[:id])
     @practice.consolidate_thoughts
     @practice.save
-    Thought.all.delete_all # this can probably go in a model method in Practice for maximum RESTitude.
     render "show.json.jbuilder"
   end
 

@@ -26,9 +26,4 @@ class Practice < ApplicationRecord
     self.thought_count = number_of_thoughts
   end
 
-  def delete_thoughts
-    self.thoughts.delete_all
-  end
-
-
 end
