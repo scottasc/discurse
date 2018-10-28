@@ -1,7 +1,7 @@
 class Api::PracticesController < ApplicationController
 
   def index
-    @practices = Practice.where(user_id: 5)
+    @practices = Practice.where(user_id: current_user.id)
     render 'index.json.jbuilder'
   end
 

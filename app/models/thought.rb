@@ -26,8 +26,8 @@ class Thought < ApplicationRecord
 
   def colorize
     self.red = (255 * self.sadness)
-    self.green = (255 * self.fear)
-    self.blue = (255 * self.anger) + (255 * self.disgust)
+    self.green = (255 * self.fear) + (255 * self.disgust)
+    self.blue = (255 * self.anger)
   end
 
 
