@@ -4,8 +4,8 @@ class Thought < ApplicationRecord
   def emotionalize
     content = self.content
     natural_language_understanding = IBMWatson::NaturalLanguageUnderstandingV1.new(
-                                                                                    username: "9fa03f8f-2344-4214-abd5-0979299ff47e",
-                                                                                    password: "OqJkfuONanYj",
+                                                                                    username: ENV["USER_NAME"],
+                                                                                    password: ENV["PASSWORD"],
                                                                                     version: "2018-03-16"
                                                                                    )
 
@@ -27,7 +27,8 @@ class Thought < ApplicationRecord
   def colorize
     self.red = (255 * self.sadness)
     self.green = (255 * self.fear)
-    self.blue = (255 * self.anger)
+    self.blue = (255 * self.anger) + (255 * self.disgust)
   end
+
 
 end

@@ -8,5 +8,3 @@ json.array! @practices do |practice|
   json.disgust practice.disgust
   json.anger practice.anger
 end
-
-json.total @total
