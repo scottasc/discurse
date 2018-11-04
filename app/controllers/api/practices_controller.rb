@@ -17,7 +17,7 @@ class Api::PracticesController < ApplicationController
   end
 
   def update
-    @practice = Practice.find(params[:id])
+    @practice = current_user.practices.last
     @practice.consolidate_thoughts
     @practice.save
     render "show.json.jbuilder"
