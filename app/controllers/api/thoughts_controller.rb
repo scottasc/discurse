@@ -12,6 +12,7 @@ class Api::ThoughtsController < ApplicationController
                           )
     @thought.emotionalize
     @thought.colorize
+    @thought.rgb_to_xy
     @thought.save
     render 'show.json.jbuilder'
   end

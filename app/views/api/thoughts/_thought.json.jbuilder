@@ -9,3 +9,5 @@
   json.red @thought.red
   json.green @thought.green
   json.blue @thought.blue
+  json.x_value @thought.x_value
+  json.y_value @thought.y_value
