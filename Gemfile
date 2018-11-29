@@ -31,6 +31,8 @@ gem 'ibm_watson'
 gem 'rack-cors', require: 'rack/cors'
 gem 'figaro'
 
+gem 'rails_12factor', group: :production
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
